@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styleStudy.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    </head>
+    <body>
+        <div id="main-container">
+       <div id="myDiv" class="header">
+           <h2 style="margin:5px">My to do list</h2>
+           <input type="text" id="myInput" placeholder="Title">
+        <i onclick="newElement()" class="material-icons" style="font-size:45px; color:white">add</i>
+     
+       </div>
+       <ul id="myUl">
+       </ul>
+       </div>
+       <script>
+       
+       //cretion of a new list item
+       function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You must write something!");
+                return;
+            } else {
+                document.getElementById("myUl").appendChild(li);
+                newTrash();
+                var_i = newCheck();
+                checkChangeBackground(var_i);
+            }
+            document.getElementById("myInput").value = "";
+            //creation of the "close" button to the list
+        }
+
+
+        function newTrash(){
+           var myNodelist = document.getElementsByTagName("LI");
+           var j;
+               var span = document.createElement("span");
+               var i = document.createElement("i");
+               i.setAttribute("class", "fa fa-trash-o");
+               span.className = "close";
+               span.appendChild(i);
+               len_list = myNodelist.length;
+               console.log(len_list)
+               myNodelist[len_list - 1].appendChild(span);
+           //click on a close button to hide the current list item
+           var close = document.getElementsByClassName("close");
+           var j;
+           for (j = 0; j < close.length; j++) {
+               close[j].onclick = function () {
+                   var div = this.parentElement;
+                   div.style.display = "none";
+               }
+           }
+        }
+
+
+        function newCheck(){
+           var myNodelist = document.getElementsByTagName("LI");
+           var j;
+               var span = document.createElement("span");
+               var i = document.createElement("i");
+               i.setAttribute("class","fa fa-check");
+               span.className = "check";
+               span.appendChild(i);
+                myNodelist[len_list - 1].appendChild(span);
+
+            return i;
+        
+           
+        }
+
+        function checkChangeBackground(i){
+           var check = document.getElementsByClassName("check");
+           var j;
+           for(j=0; j<check.length; j++){
+               check[j].onclick = function() {
+                   var div = this.parentElement;
+                   div.style.background="RGBA(255,255,255,0.5)";
+                   i.style.display = "none";
+               }
+           }
+        }
+
+        
+           
+
+
+        
+
+       </script>
+    </body>
+</html>
