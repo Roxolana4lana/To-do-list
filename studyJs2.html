@@ -12,10 +12,11 @@
        <div id="myDiv" class="header">
            <h2 style="margin:5px">My to do list</h2>
            <input type="text" id="myInput" placeholder="Title">
-        <i onclick="newElement()" class="material-icons" style="font-size:45px; color:white">add</i>
-     
+       <a herf="#" onclick="newElement()"> <i id="btn" class="material-icons" style="font-size:45px; color:white">add</i>
+       </a>
        </div>
        <ul id="myUl">
+           
        </ul>
        </div>
        <script>
@@ -32,8 +33,8 @@
             } else {
                 document.getElementById("myUl").appendChild(li);
                 newTrash();
-                var_i = newCheck();
-                checkChangeBackground(var_i);
+                newCheck();
+                
             }
             document.getElementById("myInput").value = "";
             //creation of the "close" button to the list
@@ -48,9 +49,8 @@
                i.setAttribute("class", "fa fa-trash-o");
                span.className = "close";
                span.appendChild(i);
-               len_list = myNodelist.length;
-               console.log(len_list)
-               myNodelist[len_list - 1].appendChild(span);
+               
+               myNodelist[myNodelist.length - 1].appendChild(span);
            //click on a close button to hide the current list item
            var close = document.getElementsByClassName("close");
            var j;
@@ -60,35 +60,32 @@
                    div.style.display = "none";
                }
            }
-        }
+        };
 
 
-        function newCheck(){
-           var myNodelist = document.getElementsByTagName("LI");
-           var j;
-               var span = document.createElement("span");
-               var i = document.createElement("i");
-               i.setAttribute("class","fa fa-check");
-               span.className = "check";
-               span.appendChild(i);
-                myNodelist[len_list - 1].appendChild(span);
+        function newCheck() {
+                var myNodelist = document.getElementsByTagName("LI");
+                var j;
+                var span = document.createElement("span");
+                var i = document.createElement("i");
+                i.setAttribute("class", "fa fa-check");
+                span.className = "check";
+                span.appendChild(i);
+                myNodelist[myNodelist.length - 1].appendChild(span);
+                span.onclick = function () { checkChangeBackground(span) };
+                return i;
 
-            return i;
+
+            }
+
+      function checkChangeBackground(span) {
+                var div = span.parentElement;
+                div.style.background = "RGBA(0,0,0,0.5)";
+                span.children[0].style.display = "none";
+            }
         
-           
-        }
 
-        function checkChangeBackground(i){
-           var check = document.getElementsByClassName("check");
-           var j;
-           for(j=0; j<check.length; j++){
-               check[j].onclick = function() {
-                   var div = this.parentElement;
-                   div.style.background="RGBA(255,255,255,0.5)";
-                   i.style.display = "none";
-               }
-           }
-        }
+    
 
         
            
